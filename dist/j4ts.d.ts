@@ -349,8 +349,8 @@ declare namespace javaemul.internal {
         static codePointBefore$char_A$int$int(a: string[], index: number, start: number): number;
         static codePointBefore(a?: any, index?: any, start?: any): number;
         static codePointBefore$java_lang_CharSequence$int(cs: any, index: number): number;
-        static codePointCount$char_A$int$int(a: string[], offset: number, count: number): number;
-        static codePointCount(a?: any, offset?: any, count?: any): number;
+        static codePointCount$char_A$int$int(a: string[], beginIndex: number, len: number): number;
+        static codePointCount(a?: any, beginIndex?: any, len?: any): number;
         static codePointCount$java_lang_CharSequence$int$int(seq: any, beginIndex: number, endIndex: number): number;
         static compare(x: string, y: string): number;
         static digit(c: string, radix: number): number;
@@ -380,6 +380,7 @@ declare namespace javaemul.internal {
          * @return {boolean}
          */
         static isSpace(c: string): boolean;
+        static isNonEmpty(s: Array<any>): boolean;
         static isWhitespace$char(ch: string): boolean;
         static isWhitespace(ch?: any): boolean;
         static isWhitespace$int(codePoint: number): boolean;
@@ -6892,11 +6893,11 @@ declare namespace java.util {
      * @class
      */
     abstract class AbstractMap<K, V> implements java.util.Map<K, V> {
-        getOrDefault(key: any, defaultValue: any): any;
+        putIfAbsent(key: any, value: any): any;
+        merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
         computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
         replaceAll(__function: (p1: any, p2: any) => any): void;
-        merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
-        putIfAbsent(key: any, value: any): any;
+        getOrDefault(key: any, defaultValue: any): any;
         constructor();
         /**
          *
@@ -10042,11 +10043,11 @@ declare namespace java.util {
             constructor(list: java.util.List<any>);
         }
         class UnmodifiableMap<K, V> implements java.util.Map<K, V> {
-            getOrDefault(key: any, defaultValue: any): any;
+            putIfAbsent(key: any, value: any): any;
+            merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
             computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
             replaceAll(__function: (p1: any, p2: any) => any): void;
-            merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
-            putIfAbsent(key: any, value: any): any;
+            getOrDefault(key: any, defaultValue: any): any;
             __entrySet: Collections.UnmodifiableSet<java.util.Map.Entry<K, V>>;
             __keySet: Collections.UnmodifiableSet<K>;
             map: java.util.Map<any, any>;
@@ -10405,10 +10406,10 @@ declare namespace java.util {
      * @extends java.util.AbstractSequentialList
      */
     class LinkedList<E> extends java.util.AbstractSequentialList<E> implements java.lang.Cloneable, java.util.List<E>, java.util.Deque<E>, java.io.Serializable {
+        sort(c: java.util.Comparator<any>): void;
         removeIf(filter: (p1: any) => boolean): boolean;
         parallelStream(): java.util.stream.Stream<any>;
         stream(): java.util.stream.Stream<any>;
-        sort(c: java.util.Comparator<any>): void;
         forEach(action: (p1: any) => void): void;
         /**
          * Ensures that RPC will consider type parameter E to be exposed. It will be
@@ -10792,11 +10793,11 @@ declare namespace java.util {
      * @extends java.util.AbstractHashMap
      */
     class IdentityHashMap<K, V> extends java.util.AbstractHashMap<K, V> implements java.util.Map<K, V>, java.lang.Cloneable, java.io.Serializable {
-        getOrDefault(key: any, defaultValue: any): any;
+        putIfAbsent(key: any, value: any): any;
+        merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
         computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
         replaceAll(__function: (p1: any, p2: any) => any): void;
-        merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
-        putIfAbsent(key: any, value: any): any;
+        getOrDefault(key: any, defaultValue: any): any;
         /**
          * Ensures that RPC will consider type parameter K to be exposed. It will be
          * pruned by dead code elimination.
@@ -11535,11 +11536,11 @@ declare namespace java.util {
      * @extends java.util.HashMap
      */
     class LinkedHashMap<K, V> extends java.util.HashMap<K, V> implements java.util.Map<K, V> {
-        getOrDefault(key: any, defaultValue: any): any;
+        putIfAbsent(key: any, value: any): any;
+        merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
         computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
         replaceAll(__function: (p1: any, p2: any) => any): void;
-        merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
-        putIfAbsent(key: any, value: any): any;
+        getOrDefault(key: any, defaultValue: any): any;
         accessOrder: boolean;
         head: LinkedHashMap.ChainEntry;
         map: java.util.HashMap<K, LinkedHashMap.ChainEntry>;
